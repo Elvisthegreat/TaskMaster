@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="container d-flex justify-content-center align-items-center">
-        <h1 class="text-capitalize mt-4">Welcome to Task Master</h1>
+    <section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
+        <h1 class="text-capitalize mt-4 fw-bold text-primary">Welcome to Task Master</h1>
 
-        <!-- Task Grid -->
+        <p class="lead text-muted mt-2">Manage your tasks efficiently and stay productive.</p>
 
+        <div class="mt-4">
+            <a href="{{ path('task_list') }}" class="btn btn-lg btn-outline-primary shadow-sm px-4">
+                📋 View Tasks
+            </a>
+        </div>
     </section>
 {% endblock %}
