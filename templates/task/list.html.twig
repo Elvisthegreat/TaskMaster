@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Task List</h1>
+
+        {% if tasks is empty %}
+            <div class="alert alert-warning text-center" role="alert">
+                No tasks found.
+            </div>
+        {% else %}
+            <div class="row">
+                {% for task in tasks %}
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ task.title }}</h5>
+                                <p class="card-text">{{ task.description }}</p>
+                                <span class="badge bg-primary">{{ task.status }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
