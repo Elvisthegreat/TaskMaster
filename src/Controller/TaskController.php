@@ -19,7 +19,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/task/{id}', name: 'task_show')]
+    #[Route('/task/{id<\d+>}', name: 'task_show')]
     public function show(Taskmaster $task): Response
     {
         return $this->render('/task/show.html.twig', [
