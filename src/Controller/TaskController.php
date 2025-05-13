@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\TaskmasterRepository;
+use App\Entity\Taskmaster;
 
 class TaskController extends AbstractController
 {
@@ -15,6 +16,14 @@ class TaskController extends AbstractController
         // Fetch all tasks from the repository
         return $this->render('/task/list.html.twig', [
             'tasks' => $repository->findAll(),
+        ]);
+    }
+
+    #[Route('/task/{id}', name: 'task_show')]
+    public function show(Taskmaster $task): Response
+    {
+        return $this->render('/task/show.html.twig', [
+            'task' => $task
         ]);
     }
 }
