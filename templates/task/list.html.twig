@@ -14,12 +14,16 @@
                     <div class="col-md-2">
                         <div class="card mb-3">
                             <div class="card-body">
+
+                            <a href="{{ path('task_show', {'id' : task.id}) }}" class="text-decoration-none text-dark">
+                            
                                 <h5 class="card-title">{{ task.title }}</h5>
-                                <p class="card-text">{{ task.description }}</p>
+                                <p class="card-text mb-3">{{ task.description }}</p>
                                 <span class="badge {% if task.status == 'In Progress' %}bg-primary {% elseif task.status == 'Pending' %} bg-warning {% else %} bg-success {% endif %}">{{ task.status }}</span>
                                 <p class="text-muted mt-2">
                                     📅 Due Date: <strong>{{ task.dueDate|date('d M Y') }}</strong>
                                 </p>
+                            </a>
                             </div>
                         </div>
                     </div>
