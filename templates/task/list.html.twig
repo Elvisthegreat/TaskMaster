@@ -16,7 +16,7 @@
                             <div class="card-body">
 
                             <a href="{{ path('task_show', {'id' : task.id}) }}" class="text-decoration-none text-dark">
-                            
+
                                 <h5 class="card-title">{{ task.title }}</h5>
                                 <p class="card-text mb-3">{{ task.description }}</p>
                                 <span class="badge {% if task.status == 'In Progress' %}bg-primary {% elseif task.status == 'Pending' %} bg-warning {% else %} bg-success {% endif %}">{{ task.status }}</span>
@@ -28,6 +28,11 @@
                         </div>
                     </div>
                 {% endfor %}
+                <div class="text-muted mt-5">
+                    <p class="text-center">
+                        <a href="{{ path('task_new_form') }}" class="btn btn-primary">Create New Task</a>
+                    </p>
+                </div>
             </div>
         {% endif %}
     </div>

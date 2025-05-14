@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\TaskmasterRepository;
 use App\Entity\Taskmaster;
+use App\Form\TaskmasterForm;
 
 class TaskController extends AbstractController
 {
@@ -19,11 +20,20 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/task/{id<\d+>}', name: 'task_show')]
+    #[Route('/task/{id}', name: 'task_show')]
     public function show(Taskmaster $task): Response
     {
         return $this->render('/task/show.html.twig', [
             'task' => $task
+        ]);
+    }
+
+    // This route is for creating a new task
+    #[Route('/task/newForm', name: 'task_new_form')]
+    public function newForm(): Response
+    {
+        return $this->render('/task/newForm.html.twig', [
+            
         ]);
     }
 }
