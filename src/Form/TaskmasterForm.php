@@ -6,6 +6,7 @@ use App\Entity\Taskmaster;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TaskmasterForm extends AbstractType
 {
@@ -16,6 +17,10 @@ class TaskmasterForm extends AbstractType
             ->add('description')
             ->add('status')
             ->add('dueDate')
+            ->add('save', SubmitType::class, [
+                'label' => 'Create Task',
+                'attr' => ['class' => 'btn btn-primary'],
+            ])
         ;
     }
 

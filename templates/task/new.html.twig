@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">New Task</h1>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.name)}}
+    {{ form_row(form.description)}}
+    {{ form_row(form.size)}}
+    {{ form_row(form.status)}}
+    {{ form_row(form.dueDate)}}
+    {{ form_row(form.save)}}
+{{ form_end(form)}}
+{% endblock %}

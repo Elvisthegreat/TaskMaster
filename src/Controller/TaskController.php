@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\TaskmasterRepository;
 use App\Entity\Taskmaster;
 use App\Form\TaskmasterForm;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 class TaskController extends AbstractController
 {
@@ -29,11 +31,27 @@ class TaskController extends AbstractController
     }
 
     // This route is for creating a new task
-    #[Route('/task/newForm', name: 'task_new_form')]
-    public function newForm(): Response
+    #[Route('/task/new', name: 'task_new')]
+    public function new(Request $request, EntityManagerInterface $manager): Response
     {
-        return $this->render('/task/newForm.html.twig', [
-            
+        // Create a new Taskmaster entity
+        $task = new Taskmaster();
+
+        // Create a form for the Taskmaster entity
+        $form = $this->createForm(TaskmasterForm::class, $task);
+
+        // Handle the request
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($task);
+
+            // Save the task to the database
+            $manager->flush();
+        }
+
+        return $this->render('/task/new.html.twig', [
+            'form' => $form,
         ]);
     }
 }
