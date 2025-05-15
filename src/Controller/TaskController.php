@@ -24,6 +24,7 @@ class TaskController extends AbstractController
         ]);
     }
 
+
         // Show a specific task and ensures only numeric IDs are passed <\d+>
     #[Route('/task/{id<\d+>}', name: 'task_show')]
     public function show(Taskmaster $task): Response
@@ -32,6 +33,7 @@ class TaskController extends AbstractController
             'task' => $task
         ]);
     }
+
 
     // Create a new task
     #[Route('/task/new', name: 'task_new')]
@@ -51,6 +53,11 @@ class TaskController extends AbstractController
 
             // Save the task to the database
             $manager->flush();
+
+            // Redirect to the task show page after successful creation
+            return $this->redirectToRoute('task_show', [
+                'id' => $task->getId(),
+            ]);
         }
 
         return $this->render('/task/new.html.twig', [
