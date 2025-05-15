@@ -24,8 +24,8 @@ class TaskController extends AbstractController
         ]);
     }
 
-        // Show a specific task
-    #[Route('/task/{id}', name: 'task_show')]
+        // Show a specific task and ensures only numeric IDs are passed <\d+>
+    #[Route('/task/{id<\d+>}', name: 'task_show')]
     public function show(Taskmaster $task): Response
     {
         return $this->render('/task/show.html.twig', [
