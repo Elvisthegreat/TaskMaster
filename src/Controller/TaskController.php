@@ -54,6 +54,9 @@ class TaskController extends AbstractController
             // Save the task to the database
             $manager->flush();
 
+            // Flash a success message
+            $this->addFlash('notice', 'Task created successfully!');
+
             // Redirect to the task show page after successful creation
             return $this->redirectToRoute('task_show', [
                 'id' => $task->getId(),
