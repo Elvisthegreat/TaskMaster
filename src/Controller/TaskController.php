@@ -9,7 +9,9 @@ use App\Repository\TaskmasterRepository;
 use App\Entity\Taskmaster;
 use App\Form\TaskmasterForm;
 use Symfony\Component\HttpFoundation\Request;
+// Handles entity operations such as persisting, updating, and deleting in the database
 use Doctrine\ORM\EntityManagerInterface;
+
 
 class TaskController extends AbstractController
 {
@@ -22,6 +24,7 @@ class TaskController extends AbstractController
         ]);
     }
 
+        // Show a specific task
     #[Route('/task/{id}', name: 'task_show')]
     public function show(Taskmaster $task): Response
     {
@@ -30,7 +33,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    // This route is for creating a new task
+    // Create a new task
     #[Route('/task/new', name: 'task_new')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
