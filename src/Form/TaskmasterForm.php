@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TaskmasterForm extends AbstractType
@@ -17,7 +18,16 @@ class TaskmasterForm extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('status')
+            ->add('status', ChoiceType::class, [
+        'choices' => [
+            'In Progress' => 'In Progress',
+            'Pending' => 'Pending',
+            'Completed' => 'Completed',
+        ],
+        'expanded' => false, // Set to true if you want radio buttons instead
+        'multiple' => false, // Allows only one selection
+        'attr' => ['class' => 'form-select'], // Bootstrap styling
+    ])
             ->add('dueDate')
             ->add('save', SubmitType::class, [
                 'label' => 'Create Task',

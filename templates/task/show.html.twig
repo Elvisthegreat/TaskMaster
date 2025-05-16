@@ -17,6 +17,7 @@
 							<strong>{{ task.dueDate|date('d M Y') }}</strong>
 						</p>
 						<a href="{{ path('task_edit', {'id' : task.id}) }}" class="btn btn-sm btn-outline-primary shadow-sm px-2">Edit Task</a>
+						<a href="{{ path('task_delete', {'id' : task.id}) }}" class="btn btn-sm btn-outline-danger shadow-sm px-2">Delete Task</a>
 					</div>
 				</div>
 			</div>

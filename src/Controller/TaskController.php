@@ -96,4 +96,28 @@ class TaskController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+    // Delete a task
+    #[Route('/task/delete/{id<\d+>}', name: 'task_delete')]
+    public function delete(Taskmaster $task, Request $request, EntityManagerInterface $manager): Response
+    {
+        // Check if the request is a POST request
+        if ($request->isMethod('POST')) {
+
+            // Remove the task from the database
+            $manager->remove($task);
+
+            // Flush the changes to the database
+            $manager->flush();
+
+            $this->addFlash('notice', 'Task deleted successfully!');
+
+            return $this->redirectToRoute('task_list');
+        }
+
+        return $this->render('/task/delete.html.twig', [
+            'id' => $task->getId(),
+        ]);
+    }
 }
