@@ -67,4 +67,33 @@ class TaskController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+    // Edit an existing task
+    #[Route('/task/edit/{id<\d+>}', name: 'task_edit')]
+    public function edit(Taskmaster $task, Request $request, EntityManagerInterface $manager): Response
+    {
+        // Create a form for the Taskmaster entity
+        $form = $this->createForm(TaskmasterForm::class, $task);
+
+        // Handle the request
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Update the task in the database
+
+            $manager->flush();
+
+            $this->addFlash('notice', 'Task updated successfully!');
+
+            // Redirect to the task show page after successful update
+            return $this->redirectToRoute('task_show', [
+                'id' => $task->getId(),
+            ]);
+        }
+
+        return $this->render('/task/edit.html.twig', [
+            'form' => $form,
+        ]);
+    }
 }
