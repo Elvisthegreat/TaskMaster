@@ -24,8 +24,6 @@ class TaskmasterForm extends AbstractType
             'Pending' => 'Pending',
             'Completed' => 'Completed',
         ],
-        'expanded' => false, // Set to true if you want radio buttons instead
-        'multiple' => false, // Allows only one selection
         'attr' => ['class' => 'form-select'], // Bootstrap styling
     ])
             ->add('dueDate')
