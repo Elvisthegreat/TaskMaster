@@ -26,8 +26,7 @@ class Taskmaster
     private ?string $status = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTime $dueDate = null;
-
+    private ?\DateTimeImmutable $dueDate = null;
     public function getId(): ?int
     {
         return $this->id;
