@@ -1,0 +1,20 @@
+{
+  "name": "taskmaster",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "encore production",
+    "dev": "encore dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@symfony/webpack-encore": "^5.1.0"
+  }
+}
