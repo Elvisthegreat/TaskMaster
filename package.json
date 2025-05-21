@@ -16,5 +16,8 @@
   "description": "",
   "dependencies": {
     "@symfony/webpack-encore": "^5.1.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.7"
   }
 }
