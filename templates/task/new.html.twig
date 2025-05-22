@@ -8,6 +8,8 @@
             <div class="col-md-6">
                 {{ form_start(form, {'attr': {'class': 'needs-validation', 'required': 'required'}}) }}
 
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('task_form') }}">
+
                 <div class="mb-3">
                     {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
                 </div>

@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Validator\Constraints\Choice;
 
 class TaskmasterForm extends AbstractType
@@ -25,13 +25,12 @@ class TaskmasterForm extends AbstractType
                     'Pending' => 'pending',
                     'Completed' => 'completed',
                 ],
-                'placeholder' => 'Select a status', // Adds a default empty option
-                'required' => true, // Ensures the field is mandatory
-                'attr' => ['class' => 'form-select'], // Bootstrap styling
+                'placeholder' => 'Select a status',
+                'required' => true,
+                'attr' => ['class' => 'form-select'],
                 'constraints' => [
-                    new Choice(['choices' => ['in progress', 'pending', 'completed']]), // Enforces valid choices
+                    new Choice(['choices' => ['in progress', 'pending', 'completed']]),
                 ],
-
             ])
             ->add('dueDate')
             ->add('save', SubmitType::class, [
@@ -45,6 +44,9 @@ class TaskmasterForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Taskmaster::class,
+            'csrf_protection' => true, // Enables CSRF protection
+            'csrf_field_name' => '_csrf_token', // Defines the CSRF field name
+            'csrf_token_id' => 'task_form', // Unique token ID for this form
         ]);
     }
 }
