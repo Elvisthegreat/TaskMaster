@@ -22,8 +22,9 @@ class Taskmaster
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private ?string $status = null;
+
 
     #[ORM\Column(nullable: true)]
     private ?\DateTime $dueDate = null;

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class TaskmasterForm extends AbstractType
 {
@@ -19,13 +20,19 @@ class TaskmasterForm extends AbstractType
             ->add('title')
             ->add('description')
             ->add('status', ChoiceType::class, [
-        'choices' => [
-            'In Progress' => 'In Progress',
-            'Pending' => 'Pending',
-            'Completed' => 'Completed',
-        ],
-        'attr' => ['class' => 'form-select'], // Bootstrap styling
-    ])
+                'choices' => [
+                    'In Progress' => 'in progress',
+                    'Pending' => 'pending',
+                    'Completed' => 'completed',
+                ],
+                'placeholder' => 'Select a status', // Adds a default empty option
+                'required' => true, // Ensures the field is mandatory
+                'attr' => ['class' => 'form-select'], // Bootstrap styling
+                'constraints' => [
+                    new Choice(['choices' => ['in progress', 'pending', 'completed']]), // Enforces valid choices
+                ],
+
+            ])
             ->add('dueDate')
             ->add('save', SubmitType::class, [
                 'label' => 'Create Task',
